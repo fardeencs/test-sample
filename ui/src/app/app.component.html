@@ -1,0 +1,31 @@
+<div class="row main-container">
+    <div class="sub-container">
+        <div class="fomr-container">
+            <h3>Save Or Update</h3>
+            <button type="button" (click)="actions.changeActionType(actionType.ADD)">Add</button>
+            <form #dataForm="ngForm" (ngSubmit)="actions.onSubmit(dataForm)">
+                <div class="column controls">
+                    <div>
+                        <input type="text" name="name" [(ngModel)]="employee.name" placeholder="Enter Name..." />
+                        <span [ngClass]="{'error': fomErrors?.name}">{{fomErrors?.name}}</span>
+                    </div>
+                    <div>
+                        <input type="text" name="jobTitle" [(ngModel)]="employee.jobTitle"
+                            placeholder="Enter Job Title..." />
+                        <span [ngClass]="{'error': fomErrors?.fullName}">{{fomErrors?.jobTitle}}</span>
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="dataForm.form.invalid">
+                    <ng-container *ngIf="type === actionType.ADD">Save</ng-container>
+                    <ng-container *ngIf="type === actionType.EDIT">Update</ng-container>
+                </button>
+            </form>
+        </div>
+        <div class="list-container">
+            <h3>List</h3>
+            <app-user-list [data]="userList$ | async" (onRowClick)="actions.onRowSelect($event)"></app-user-list>
+        </div>
+    </div>
+
+</div>

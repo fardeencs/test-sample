@@ -1,0 +1,15 @@
+<ng-container *ngIf="!data || data?.length <= 0">
+   <p>No Data Found</p>
+</ng-container>
+
+
+<ng-container *ngFor="let item of data">
+  <div class="details">
+    <p><strong>User Name:</strong> {{item.name}}</p>
+    <p><strong>Job Title:</strong> {{item.jobTitle}}</p>
+    <div class="actions">
+      <span><button type="button" (click)="actions.edit(item)">Edit</button></span>
+      <span><button type="button" (click)="actions.delete(item._id)">Delete</button></span>
+    </div>
+  </div>
+</ng-container>
